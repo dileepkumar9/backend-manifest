@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+  labels:
+    app: nodejs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+        - name: nodejs-app
+          image: pdileepkumar/testimage  # Replace with your actual image
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: "mongodb+srv://dileep:secret32412@cluster0.61vv0.mongodb.net/course-goals?retryWrites=true&w=majority&appName=Cluster0"  # Replace with your actual MongoDB URL
+            - name: PORT
+              value: "3000"
+
+
